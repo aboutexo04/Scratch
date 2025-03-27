@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make the Cat Jump!</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .slide {
+      display: none;
+      max-width: 600px;
+      padding: 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .slide.active {
+      display: block;
+    }
+    .nav-buttons {
+      margin-top: 1.5rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      background-color: #4CAF50;
+      color: white;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    img.block {
+      width: 250px;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide active">
+    <h1>Let's Make the Cat Jump!</h1>
+    <p>In this lesson, we’ll learn how to make the Scratch Cat jump when we press the space key.</p>
+  </div>
+  <div class="slide">
+    <h1>Add Code Blocks</h1>
+    <p>Use these blocks:</p>
+    <div>
+      <img class="block" src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Scratch_3.0_Event_When_Space_Key_Pressed_Block.svg" alt="when space key pressed" />
+      <img class="block" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Scratch_3.0_Motion_Change_Y_By_Block.svg" alt="change y by 10" />
+      <img class="block" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Scratch_3.0_Motion_Change_Y_By_Block.svg" alt="change y by -10" style="transform: scaleY(-1);" />
+    </div>
+    <p>This will make the cat move up and down like a jump!</p>
+  </div>
+  <div class="slide">
+    <h1>Try It Out!</h1>
+    <p>Go to Scratch and add the blocks. Press the space bar and see your cat jump! 🐾</p>
+  </div>
+
+  <div class="nav-buttons">
+    <button id="prev">Back</button>
+    <button id="next">Next</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let currentSlide = 0;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlides();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlides();
+      }
+    });
+  </script>
+</body>
+</html>
